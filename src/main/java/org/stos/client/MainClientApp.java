@@ -10,6 +10,7 @@ import java.rmi.RemoteException;
 public class MainClientApp {
 
     public static void main(String[] args) throws RemoteException, MalformedURLException, NotBoundException {
+        setProps();
         RMIInterface server = new ClientOperation().lookUpServer();
         String result = server.helloTo("brian");
         System.out.println("The server took: " + "brian" + " and answered:\n" + result);
@@ -19,4 +20,13 @@ public class MainClientApp {
         System.out.println(theThingFromTheServer.toString());
     }
 
+    private static void setProps() {
+        String pass = "clientkeystore";
+        System.setProperty("javax.net.ssl.debug", "all");
+        System.setProperty("javax.net.ssl.keyStore", "./clientcert/clientkeystore.jks");
+        System.setProperty("javax.net.ssl.keyStorePassword", pass);
+        System.setProperty("javax.net.ssl.trustStore", "./clientcert/clienttruststore.jks");
+        System.setProperty("javax.net.ssl.trustStorePassword", pass);
+        System.setProperty("java.rmi.dgc.leaseValue", "300000");
+    }
 }

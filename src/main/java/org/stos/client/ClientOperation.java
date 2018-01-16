@@ -2,6 +2,7 @@ package org.stos.client;
 
 import org.stos.rmi.RMIInterface;
 
+import javax.rmi.ssl.SslRMIClientSocketFactory;
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -12,7 +13,7 @@ public class ClientOperation {
     private static RMIInterface lookUp;
 
     ClientOperation() throws RemoteException, NotBoundException, MalformedURLException {
-        Registry registry = LocateRegistry.getRegistry(1099);
+        Registry registry = LocateRegistry.getRegistry("localhost", 2020, new SslRMIClientSocketFactory());
         lookUp = (RMIInterface) registry.lookup("//localhost/TheServer");
 //        lookUp = (RMIInterface) Naming.lookup("//localhost/TheServer");
     }

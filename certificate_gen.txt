@@ -1,0 +1,9 @@
+Generate a self signed certificate.
+
+keytool -genkeypair -alias server -keyalg RSA -validity 365 -keystore
+keytool -genkeypair -alias server -keyalg RSA -validity 365 -keystore serverkeystore.jks
+keytool -genkeypair -alias client -keyalg RSA -validity 365 -keystore clientkeystore.jks
+keytool -export -alias server -keystore serverkeystore.jks -rfc -file servercert.cer
+keytool -export -alias client -keystore clientkeystore.jks -rfc -file clientcert.cer
+keytool -import -alias server -file servercert.cer -keystore clienttruststore.jks
+keytool -import -alias client -file clientcert.cer -keystore servertruststore.jks
