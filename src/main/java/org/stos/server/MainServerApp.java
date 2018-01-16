@@ -5,10 +5,12 @@ import java.rmi.registry.Registry;
 
 public class MainServerApp {
 
+    private static Registry rmiRegistry;
+
     public static void main(String[] args) {
 
         try {
-            Registry rmiRegistry = RMIRegistryFactory.createRmiRegistry(1099);
+            rmiRegistry = RMIRegistryFactory.createRmiRegistry(1099);
             rmiRegistry.rebind("//localhost/TheServer", new ServerOperation());
             //Naming.rebind("//localhost/TheServer", new ServerOperation());
         } catch (RemoteException e) {
