@@ -12,7 +12,7 @@ public class MainServerApp {
     public static void main(String[] args) {
 
         try {
-            setProps();
+            setPropsShared();
             rmiRegistry = RMIRegistryFactory.createRmiRegistry(RMI_REGISTRY_PORT);
             System.out.println("registry running on Port: " + RMI_REGISTRY_PORT);
             rmiRegistry.bind("//localhost/TheServer", new ServerOperation());
@@ -35,4 +35,14 @@ public class MainServerApp {
         System.setProperty("javax.net.ssl.trustStore", "./servercert/servertruststore.jks");
         System.setProperty("javax.net.ssl.trustStorePassword", pass);
     }
+
+    private static void setPropsShared() {
+        String pass = "sharedkeystore";
+        System.setProperty("javax.net.ssl.debug", "all");
+        System.setProperty("javax.net.ssl.keyStore", "./sharedcert/keystore.jks");
+        System.setProperty("javax.net.ssl.keyStorePassword", pass);
+        System.setProperty("javax.net.ssl.trustStore", "./sharedcert/truststore.jks");
+        System.setProperty("javax.net.ssl.trustStorePassword", pass);
+    }
+
 }
