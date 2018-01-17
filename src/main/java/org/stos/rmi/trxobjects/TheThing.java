@@ -15,7 +15,7 @@ public class TheThing implements Serializable{
 
     @Override
     public String toString() {
-        return "I am a thing with id:" + id + " and name: " + name + ". My internal thnig says: "
+        return "I am a thing with id:" + id + " and name: " + name + ". My internal thing says: "
                 + internalThing.toString();
     }
 }
