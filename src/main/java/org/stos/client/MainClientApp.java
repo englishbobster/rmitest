@@ -8,10 +8,11 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 public class MainClientApp {
+    public static boolean sslEnabled = true;
 
     public static void main(String[] args) throws RemoteException, MalformedURLException, NotBoundException {
         setPropsShared();
-        RMIInterface server = new ClientOperation().lookUpServer();
+        RMIInterface server = new ClientOperation(2020, sslEnabled).lookUpServer();
         String result = server.helloTo("brian");
         System.out.println("The server took: " + "brian" + " and answered:\n" + result);
 

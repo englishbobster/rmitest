@@ -4,17 +4,17 @@ import org.stos.rmi.RMIInterface;
 import org.stos.rmi.trxobjects.InternalThing;
 import org.stos.rmi.trxobjects.TheThing;
 
-import javax.rmi.ssl.SslRMIClientSocketFactory;
-import javax.rmi.ssl.SslRMIServerSocketFactory;
 import java.rmi.RemoteException;
+import java.rmi.server.RMIClientSocketFactory;
+import java.rmi.server.RMIServerSocketFactory;
 import java.rmi.server.UnicastRemoteObject;
 
 public class ServerOperation extends UnicastRemoteObject implements RMIInterface {
 
     private static final long serialVersionUiD = 1L;
 
-    protected ServerOperation() throws RemoteException {
-        super(2020, new SslRMIClientSocketFactory(), new SslRMIServerSocketFactory(null, null, true));
+    protected ServerOperation(RMIClientSocketFactory csf, RMIServerSocketFactory ssf) throws RemoteException {
+        super(2020, csf, ssf);
     }
 
     @Override
